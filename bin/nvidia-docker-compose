@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 import subprocess
 import argparse
-import urllib.request
+import urllib2
 import yaml
 import json
 
@@ -13,7 +13,7 @@ parser.add_argument('-f')
 
 dc_file = v.f or 'docker-compose.yml'
 
-resp = urllib.request.urlopen('http://localhost:3476/docker/cli/json').read().decode()
+resp = urllib2.urlopen('http://localhost:3476/docker/cli/json').read().decode()
 cuda_config = json.loads(resp)
 
 volume = cuda_config['Volumes'][0].split(':')[0]
